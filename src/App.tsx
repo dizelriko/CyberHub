@@ -1,12 +1,12 @@
 import Header from "./components/Header/index";
-import CoverSection from "./section/CoverSection/index";
+import HomePage from "./pages/HomePage/index";
 import Footer from "./components/Footer/index";
 
 function App() {
   return (
     <>
       <Header />
-      <CoverSection />
+      <HomePage />
       <Footer />
     </>
   );
