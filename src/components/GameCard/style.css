@@ -1,0 +1,181 @@
+.game-card {
+  height: 100%;
+  overflow: hidden;
+
+  border: 1px solid rgba(22, 156, 255, 0.3);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 28, 42, 0.98),
+      rgba(4, 15, 23, 0.98)
+    );
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.game-card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.game-card-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.45s ease;
+}
+
+.game-card:hover .game-card-image img {
+  transform: scale(1.06);
+}
+
+.game-card-content {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 180px;
+
+  padding: 22px;
+}
+
+.game-card-title {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+.game-card-title i {
+  color: #169cff;
+
+  font-size: 27px;
+}
+
+.game-card-title h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.game-card-description {
+  margin-top: 15px;
+
+  color: #98a7b0;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.game-card-price {
+  display: flex;
+  align-items: flex-end;
+
+  gap: 6px;
+
+  margin: 24px 0;
+}
+
+.game-card-price strong {
+  color: #ffffff;
+
+  font-size: 38px;
+  font-weight: 900;
+
+  line-height: 1;
+}
+
+.game-card-price span {
+  padding-bottom: 4px;
+
+  color: #8c9aa3;
+
+  font-size: 12px;
+}
+
+.game-card-button {
+  width: 100%;
+
+  margin-top: auto;
+}
+
+/* BLUE */
+
+.game-card-blue {
+  border: 2px solid rgba(22, 156, 255, 0.3);
+}
+
+.game-card-blue .game-card-title i {
+  color: #169cff;
+}
+
+/* YELLOW */
+
+.game-card-yellow {
+  border:2px solid rgba(255, 217, 61, 0.28);
+}
+
+.game-card-yellow .game-card-title i {
+  color: #ffd93d;
+}
+
+/* PURPLE */
+
+.game-card-purple {
+  border: 2px solid rgba(201, 60, 255, 0.3);
+}
+
+.game-card-purple .game-card-title i {
+  color: #c93cff;
+}
+
+.game-card-green {
+  border: 2px solid rgba(40, 167, 69, 0.3);
+}
+
+.game-card-green .game-card-title i {
+  color: #28a745;
+
+}
+
+@media (max-width: 576px) {
+  .game-card-content {
+    padding: 17px 14px;
+  }
+
+  .game-card-title {
+    gap: 8px;
+  }
+
+  .game-card-title i {
+    font-size: 21px;
+  }
+
+  .game-card-title h3 {
+    font-size: 13px;
+  }
+
+  .game-card-price {
+    margin: 18px 0;
+  }
+
+  .game-card-price strong {
+    font-size: 27px;
+  }
+}

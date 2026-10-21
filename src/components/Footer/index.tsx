@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import content from "../../data/content.json";
+import { navigationItems } from "../../data/navigation";
 import "./style.css";
 
 function Footer() {
@@ -27,15 +28,9 @@ function Footer() {
           </div>
 
           <nav className="footer__nav">
-            <Link to="/">Главная</Link>
-            <Link to="/zones">Зоны</Link>
-            <Link to="/zones">Тарифы</Link>
-            <Link to="/booking">
-              Бронирование
-            </Link>
-            <Link to="/booking">
-              Контакты
-            </Link>
+            {navigationItems.map((item) => (
+              <Link key={item.label} to={item.to}>{item.label}</Link>
+            ))}
           </nav>
 
           <div className="footer__socials">

@@ -1,23 +1,17 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import GameCard from "../../components/GameCard";
+import ZoneDetailsModal from "../../components/ZoneDetailsModal";
 import content from "../../data/content.json";
+import { zoneDetails, type ZoneDetails } from "../../data/zoneDetails";
+import { zonePresentation } from "../../data/zonePresentation";
 import "./style.css";
 
 function FirstSection() {
   const zones = content.home.zones;
+  const [selectedZone, setSelectedZone] = useState<ZoneDetails | null>(null);
 
-  const zoneImages = [
-    "/images/standard.jpg",
-    "/images/vip.jpg",
-    "/images/bootcamp.jpg",
-    "/images/ps5.jpg",
-  ];
-
-  const zoneIcons = [
-    "bi-display",
-    "bi-gem",
-    "bi-people-fill",
-    "bi-controller",
-  ];
+  const closeZoneDetails = () => setSelectedZone(null);
 
   return (
     <section className="zones-section">
@@ -46,40 +40,23 @@ function FirstSection() {
 
         <div className="zones-section-grid">
           {zones.items.map((zone, index) => (
-            <article
+            <GameCard
               key={zone.title}
-              className={`zone-card zone-card-${index + 1}`}
-            >
-              <div className="zone-card-image">
-                <img
-                  src={zoneImages[index]}
-                  alt={zone.title}
-                />
-              </div>
-
-              <div className="zone-card-content">
-                <div className="zone-card-title">
-                  <i className={`bi ${zoneIcons[index]}`}></i>
-
-                  <h3>{zone.title}</h3>
-                </div>
-
-                <p className="zone-card-description">
-                  {zone.description}
-                </p>
-
-                <Link
-                  to="/zones"
-                  className="zone-card-button"
-                  aria-label={`Открыть ${zone.title}`}
-                >
-                  <i className="bi bi-arrow-right"></i>
-                </Link>
-              </div>
-            </article>
+              title={zone.title}
+              description={zone.description}
+              image={zonePresentation[index].image}
+              icon={zonePresentation[index].icon}
+              variant={zonePresentation[index].variant}
+              buttonText="Подробнее"
+              onButtonClick={() => setSelectedZone(zoneDetails[index])}
+            />
           ))}
         </div>
       </div>
+
+      {selectedZone && (
+        <ZoneDetailsModal zone={selectedZone} onClose={closeZoneDetails} />
+      )}
     </section>
   );
 }

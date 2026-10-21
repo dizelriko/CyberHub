@@ -1,0 +1,40 @@
+.zones-page { background: #020b12; color: #fff; }
+.zones-hero { overflow: hidden; padding: 90px 0 80px; background: radial-gradient(circle at 78% 45%, rgba(22,156,255,.18), transparent 30%), #020b12; }
+.zones-hero__grid { display: grid; grid-template-columns: 1fr .9fr; align-items: center; gap: 70px; }
+.zones-hero__title { margin: 0; font-size: clamp(48px, 6vw, 78px); font-weight: 900; line-height: .98; }
+.zones-hero__title span { display: block; color: #35f56c; }
+.zones-hero__description { max-width: 610px; margin: 28px 0 32px; color: #a6b1b8; font-size: 17px; line-height: 1.65; }
+.zones-hero__actions { display: flex; flex-wrap: wrap; gap: 14px; }
+.zones-hero__visual { position: relative; display: grid; place-items: center; min-height: 430px; }
+.zones-hero__visual::before, .zones-hero__visual::after { content: ""; position: absolute; border-radius: 50%; border: 1px solid rgba(53,245,108,.35); }
+.zones-hero__visual::before { width: 420px; height: 420px; }
+.zones-hero__visual::after { width: 330px; height: 330px; border-color: rgba(22,156,255,.45); }
+.zones-hero__screen { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 280px; min-height: 250px; padding: 30px; border: 1px solid rgba(99,120,136,.55); border-radius: 28px; background: rgba(5,22,33,.88); text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.35), 0 0 60px rgba(22,156,255,.12); transform: rotate(-4deg); }
+.zones-hero__screen i { color: #35f56c; font-size: 52px; }
+.zones-hero__screen span { margin: 24px 0 8px; color: #169cff; font-size: 11px; font-weight: 800; letter-spacing: 4px; }
+.zones-hero__screen strong { font-size: 24px; line-height: 1.15; }
+.zones-catalog, .zones-comparison, .zones-community { padding: 90px 0; border-top: 1px solid rgba(80,130,160,.12); }
+.section-heading h2, .zones-comparison h2, .zones-community h2 { max-width: 780px; margin: 0; font-size: clamp(34px, 4vw, 52px); font-weight: 900; }
+.section-heading > a { display: flex; align-items: center; gap: 8px; color: #169cff; text-decoration: none; }
+.zones-catalog__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.zones-catalog__specs { min-height: 175px; margin: 20px 0; padding: 0; list-style: none; }
+.zones-catalog__specs li { display: flex; align-items: center; gap: 10px; margin: 9px 0; color: #aab6bd; font-size: 14px; }
+.zones-catalog__specs i { color: #35f56c; }
+.zones-comparison { background: #04111a; }
+.zones-comparison h2 { margin-bottom: 35px; }
+.zones-comparison__scroll { overflow-x: auto; border: 1px solid rgba(91,132,155,.25); border-radius: 16px; }
+.zones-comparison table { width: 100%; min-width: 850px; border-collapse: collapse; background: #071722; }
+.zones-comparison th, .zones-comparison td { padding: 18px; border-bottom: 1px solid rgba(91,132,155,.16); color: #aebac1; text-align: left; }
+.zones-comparison thead th { color: #fff; font-size: 13px; letter-spacing: 1px; }
+.zones-comparison thead th:not(:first-child) { color: #35f56c; }
+.zones-comparison tbody th { color: #fff; font-size: 13px; }
+.zones-community { background: radial-gradient(circle at 15% 50%, rgba(53,245,108,.08), transparent 30%), #020b12; }
+.zones-community__grid { display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: 70px; }
+.zones-community p { max-width: 580px; margin: 24px 0 30px; color: #9eabb3; line-height: 1.7; }
+.zones-community__features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.zones-community__features article { position: relative; min-height: 165px; padding: 24px; border: 1px solid rgba(91,132,155,.25); border-radius: 14px; background: #071722; }
+.zones-community__features span { position: absolute; top: 18px; right: 18px; color: #415563; font-weight: 900; }
+.zones-community__features i { color: #35f56c; font-size: 28px; }
+.zones-community__features h3 { margin: 35px 0 0; font-size: 16px; }
+@media (max-width: 991px) { .zones-hero__grid, .zones-community__grid { grid-template-columns: 1fr; } .zones-hero__visual { min-height: 350px; } }
+@media (max-width: 576px) { .zones-hero, .zones-catalog, .zones-comparison, .zones-community { padding: 60px 0; } .zones-hero__title { font-size: 44px; } .zones-hero__actions { flex-direction: column; } .zones-hero__actions > * { width: 100%; } .zones-hero__visual::before { width: 320px; height: 320px; } .zones-hero__visual::after { width: 250px; height: 250px; } .zones-hero__screen { width: 230px; min-height: 210px; } .section-heading > a { margin-top: 18px; } .zones-catalog__grid, .zones-community__features { grid-template-columns: 1fr; } }

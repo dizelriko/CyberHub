@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import GameCard from "../../components/GameCard";
 import content from "../../data/content.json";
 import "./style.css";
 
@@ -16,6 +16,13 @@ function SecondSection() {
     "bi-people-fill",
     "bi-controller",
   ];
+
+  const variants = [
+    "blue",
+    "yellow",
+    "purple",
+    "green",
+  ] as const;
 
   return (
     <section className="tariffs-section">
@@ -53,40 +60,29 @@ function SecondSection() {
 
         <div className="tariffs-section-grid">
           {tariffs.items.map((tariff, index) => (
-            <article
+            <GameCard
               key={tariff.title}
-              className={`tariff-card tariff-card-${index + 1}`}
+              title={tariff.title}
+              icon={icons[index]}
+              variant={variants[index]}
+              price={tariff.price}
+              period={tariff.period}
+              buttonText={tariff.button}
+              buttonTo="/booking"
             >
-              <div className="tariff-card-title">
-                <i className={`bi ${icons[index]}`}></i>
-
-                <h3>{tariff.title}</h3>
-              </div>
-
-              <div className="tariff-card-price">
-                <strong>{tariff.price}</strong>
-                <span>{tariff.period}</span>
-              </div>
-
-              <div className="tariff-card-specs">
+              <div className="tariff-specs">
                 {tariff.specs.map((spec) => (
                   <div
                     key={spec}
-                    className="tariff-card-spec"
+                    className="tariff-spec"
                   >
                     <i className="bi bi-check2"></i>
+
                     <span>{spec}</span>
                   </div>
                 ))}
               </div>
-
-              <Link
-                to="/booking"
-                className="tariff-card-button"
-              >
-                {tariff.button}
-              </Link>
-            </article>
+            </GameCard>
           ))}
         </div>
 

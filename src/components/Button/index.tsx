@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { MouseEventHandler, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 
@@ -7,6 +7,7 @@ interface ButtonProps {
   to?: string;
   variant?: "primary" | "outline";
   className?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 function Button({
@@ -14,6 +15,7 @@ function Button({
   to,
   variant = "primary",
   className = "",
+  onClick,
 }: ButtonProps) {
   const classes = `button button--${variant} ${className}`;
 
@@ -26,7 +28,7 @@ function Button({
   }
 
   return (
-    <button className={classes}>
+    <button className={classes} type="button" onClick={onClick}>
       {children}
     </button>
   );

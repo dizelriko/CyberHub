@@ -1,6 +1,7 @@
 import { NavLink, Link } from "react-router-dom";
 import Button from "../Button";
 import content from "../../data/content.json";
+import { navigationItems } from "../../data/navigation";
 import "./style.css";
 
 function Header() {
@@ -54,50 +55,19 @@ function Header() {
             id="mainNavigation"
           >
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/"
-                >
-                  {content.header.navigation.home}
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/zones"
-                >
-                  {content.header.navigation.zones}
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/zones"
-                >
-                  {content.header.navigation.tariffs}
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/booking"
-                >
-                  {content.header.navigation.booking}
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink
-                  className="nav-link"
-                  to="/booking"
-                >
-                  {content.header.navigation.contacts}
-                </NavLink>
-              </li>
+              {navigationItems.map((item) => (
+                <li className="nav-item" key={item.label}>
+                  {item.marksCurrentRoute ? (
+                    <NavLink className="nav-link" to={item.to}>
+                      {item.label}
+                    </NavLink>
+                  ) : (
+                    <Link className="nav-link" to={item.to}>
+                      {item.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
         </nav>
