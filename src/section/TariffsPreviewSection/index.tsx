@@ -3,7 +3,7 @@ import GameCard from "../../components/GameCard";
 import content from "../../data/content.json";
 import "./style.css";
 
-function SecondSection() {
+function TariffsPreviewSection() {
   const tariffs = content.home.tariffs;
 
   const [selectedTime, setSelectedTime] = useState(
@@ -59,31 +59,47 @@ function SecondSection() {
         </div>
 
         <div className="tariffs-section-grid">
-          {tariffs.items.map((tariff, index) => (
-            <GameCard
-              key={tariff.title}
-              title={tariff.title}
-              icon={icons[index]}
-              variant={variants[index]}
-              price={tariff.price}
-              period={tariff.period}
-              buttonText={tariff.button}
-              buttonTo="/booking"
-            >
-              <div className="tariff-specs">
-                {tariff.specs.map((spec) => (
-                  <div
-                    key={spec}
-                    className="tariff-spec"
-                  >
-                    <i className="bi bi-check2"></i>
+          {tariffs.items.map((tariff, index) => {
+            const pricing = (
+              tariff as unknown as {
+                prices?: Record<
+                  string,
+                  { price: string; period: string; discount?: string }
+                >;
+              }
+            ).prices?.[selectedTime];
 
-                    <span>{spec}</span>
-                  </div>
-                ))}
-              </div>
-            </GameCard>
-          ))}
+            const price = pricing?.price || tariff.price;
+            const period = pricing?.period || tariff.period;
+            const badge = pricing?.discount;
+
+            return (
+              <GameCard
+                key={tariff.title}
+                title={tariff.title}
+                icon={icons[index]}
+                variant={variants[index]}
+                price={price}
+                period={period}
+                badge={badge}
+                buttonText={tariff.button}
+                buttonTo="/booking"
+              >
+                <div className="tariff-specs">
+                  {tariff.specs.map((spec) => (
+                    <div
+                      key={spec}
+                      className="tariff-spec"
+                    >
+                      <i className="bi bi-check2"></i>
+
+                      <span>{spec}</span>
+                    </div>
+                  ))}
+                </div>
+              </GameCard>
+            );
+          })}
         </div>
 
       </div>
@@ -91,4 +107,4 @@ function SecondSection() {
   );
 }
 
-export default SecondSection;
+export default TariffsPreviewSection;

@@ -5,6 +5,9 @@ import "./style.css";
 interface ButtonProps {
   children: ReactNode;
   to?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
   variant?: "primary" | "outline";
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -13,11 +16,23 @@ interface ButtonProps {
 function Button({
   children,
   to,
+  href,
+  target,
+  rel,
   variant = "primary",
   className = "",
   onClick,
 }: ButtonProps) {
-  const classes = `button button--${variant} ${className}`;
+  const classes = `button button--${variant} ${className}`.trim();
+
+  if (href) {
+    const computedRel = target === "_blank" && !rel ? "noopener noreferrer" : rel;
+    return (
+      <a href={href} className={classes} target={target} rel={computedRel}>
+        {children}
+      </a>
+    );
+  }
 
   if (to) {
     return (

@@ -6,8 +6,9 @@
   padding: 90px 0;
 
   background:
-    url("/images/hero.jpg")
-    center / cover no-repeat;
+    radial-gradient(circle at 85% 30%, rgba(22, 156, 255, 0.16), transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(53, 245, 108, 0.12), transparent 45%),
+    #020b12;
 }
 
 .booking-section-overlay {
@@ -133,6 +134,52 @@
   font-size: 13px;
 }
 
+.booking-section-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.booking-section-label-row > span {
+  color: #b6c1c7;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.booking-section-chips {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.booking-section-chip {
+  padding: 3px 8px;
+  border: 1px solid rgba(91, 132, 155, 0.3);
+  border-radius: 6px;
+  background: rgba(4, 17, 26, 0.8);
+  color: #a6b1b8;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.booking-section-chip:hover {
+  border-color: #35f56c;
+  color: #35f56c;
+}
+
+.booking-section-chip.active {
+  border-color: #35f56c;
+  background: rgba(53, 245, 108, 0.16);
+  color: #35f56c;
+  box-shadow: 0 0 10px rgba(53, 245, 108, 0.2);
+}
+
 .booking-section-input {
   display: flex;
   align-items: center;
@@ -170,6 +217,7 @@
 .booking-section-input input,
 .booking-section-input select {
   width: 100%;
+  height: 100%;
 
   border: none;
 
@@ -178,18 +226,27 @@
   background: transparent;
 
   color: #ffffff;
+  color-scheme: dark;
 
   font-size: 14px;
 }
 
-.booking-section-input select {
+.booking-section-input select,
+.booking-section-input input[type="date"] {
   cursor: pointer;
 }
 
-.booking-section-input select option {
+.booking-section-input select optgroup {
   background: #071722;
+  color: #35f56c;
+  font-weight: bold;
+}
+
+.booking-section-input select option {
+  background: #04111a;
 
   color: #ffffff;
+  font-weight: normal;
 }
 
 /* COUNTER */
@@ -303,24 +360,25 @@
 
 @media (max-width: 576px) {
   .booking-section {
-    padding: 60px 0;
+    padding: 45px 0;
   }
 
   .booking-section-title {
-    font-size: 42px;
+    font-size: clamp(26px, 7vw, 36px);
   }
 
   .booking-section-description {
     font-size: 15px;
+    margin: 14px 0 24px;
   }
 
   .booking-section-form {
-    padding: 20px;
+    padding: 20px 16px;
+    border-radius: 14px;
   }
 
   .booking-section-fields {
     grid-template-columns: 1fr;
-
-    gap: 15px;
+    gap: 14px;
   }
 }

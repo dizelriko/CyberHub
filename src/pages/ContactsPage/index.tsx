@@ -19,11 +19,40 @@ const ContactsPage = () => {
       <section className="contacts-page__cards">
         <div className="container">
           <div className="contacts-page__grid">
-            <article><i className="bi bi-telephone"></i><span>{page.contacts.phone.title}</span><a href="tel:+77771234567">{page.contacts.phone.value}</a><p>{page.contacts.phone.description}</p></article>
-            <article><i className="bi bi-whatsapp"></i><span>{page.contacts.whatsapp.title}</span><strong>WhatsApp</strong><a href="https://wa.me/77771234567">{page.contacts.whatsapp.button}</a></article>
-            <article><i className="bi bi-telegram"></i><span>{page.contacts.telegram.title}</span><strong>{page.contacts.telegram.value}</strong><a href="https://t.me/cyberhub_almaty">{page.contacts.telegram.button}</a></article>
-            <article><i className="bi bi-geo-alt"></i><span>{page.address.title}</span><strong>{page.address.value}</strong><p>{page.address.description}</p></article>
-            <article><i className="bi bi-clock"></i><span>{page.workingHours.title}</span><strong>{page.workingHours.time}</strong><p>{page.workingHours.days} · {page.workingHours.description}</p></article>
+            <article>
+              <i className="bi bi-telephone"></i>
+              <span>{page.contacts.phone.title}</span>
+              <a href={`tel:${page.contacts.phone.value.replace(/[^+\d]/g, '')}`}>{page.contacts.phone.value}</a>
+              <p>{page.contacts.phone.description}</p>
+              <a href={`tel:${page.contacts.phone.value.replace(/[^+\d]/g, '')}`}>Позвонить</a>
+            </article>
+            <article>
+              <i className="bi bi-whatsapp"></i>
+              <span>{page.contacts.whatsapp.title}</span>
+              <a href={page.contacts.whatsapp.url} target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <p>Быстрый ответ в чате</p>
+              <a href={page.contacts.whatsapp.url} target="_blank" rel="noopener noreferrer">{page.contacts.whatsapp.button}</a>
+            </article>
+            <article>
+              <i className="bi bi-telegram"></i>
+              <span>{page.contacts.telegram.title}</span>
+              <a href={page.contacts.telegram.url || "https://t.me/cyberhub_almaty"} target="_blank" rel="noopener noreferrer">{page.contacts.telegram.value}</a>
+              <p>Новости и поддержка</p>
+              <a href={page.contacts.telegram.url || "https://t.me/cyberhub_almaty"} target="_blank" rel="noopener noreferrer">{page.contacts.telegram.button}</a>
+            </article>
+            <article>
+              <i className="bi bi-geo-alt"></i>
+              <span>{page.address.title}</span>
+              <a href={page.address.url || "https://2gis.kz/almaty"} target="_blank" rel="noopener noreferrer">{page.address.value}</a>
+              <p>{page.address.description}</p>
+              <a href={page.address.url || "https://2gis.kz/almaty"} target="_blank" rel="noopener noreferrer">{page.address.button}</a>
+            </article>
+            <article>
+              <i className="bi bi-clock"></i>
+              <span>{page.workingHours.title}</span>
+              <strong>{page.workingHours.time}</strong>
+              <p>{page.workingHours.days} · {page.workingHours.description}</p>
+            </article>
           </div>
           <div className="contacts-page__features">{page.features.map((feature) => <span key={feature}><i className="bi bi-check2"></i>{feature}</span>)}</div>
         </div>

@@ -1,15 +1,15 @@
 import CoverSection from "../../section/CoverSection";
-import FirstSection from "../../section/FirstSection";
-import SecondSection from "../../section/SecondSection";
-import ThirdSection from "../../section/ThirdSection";
+import ZonesPreviewSection from "../../section/ZonesPreviewSection";
+import TariffsPreviewSection from "../../section/TariffsPreviewSection";
+import QuickBookingSection from "../../section/QuickBookingSection";
 
 function HomePage() {
   return (
     <>
       <CoverSection />
-      <FirstSection />
-      <SecondSection />
-      <ThirdSection />
+      <ZonesPreviewSection />
+      <TariffsPreviewSection />
+      <QuickBookingSection />
     </>
   );
 }

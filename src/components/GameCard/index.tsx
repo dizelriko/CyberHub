@@ -9,6 +9,7 @@ interface GameCardProps {
   description?: string;
   price?: string;
   period?: string;
+  badge?: string;
   children?: ReactNode;
   buttonText?: string;
   buttonTo?: string;
@@ -23,6 +24,7 @@ function GameCard({
   description,
   price,
   period,
+  badge,
   children,
   buttonText,
   buttonTo,
@@ -50,11 +52,19 @@ function GameCard({
         )}
 
         {price && (
-          <div className="game-card-price">
-            <strong>{price}</strong>
+          <div className="game-card-price-wrapper">
+            <div className="game-card-price">
+              <strong>{price}</strong>
 
-            {period && (
-              <span>{period}</span>
+              {period && (
+                <span>{period}</span>
+              )}
+            </div>
+
+            {badge && (
+              <span className="game-card-badge">
+                {badge}
+              </span>
             )}
           </div>
         )}

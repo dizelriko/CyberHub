@@ -1,14 +1,42 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import content from "../../data/content.json";
+import {
+  ALL_TIME_SLOTS,
+  formatDateToISO,
+  isTimeSlotPassed,
+  getFirstAvailableTime,
+} from "../../data/timeSlots";
 import "./style.css";
 
-function ThirdSection() {
+function QuickBookingSection() {
   const booking = content.home.bookingCta;
+  const navigate = useNavigate();
 
+  const today = new Date();
+  const todayISO = formatDateToISO(today);
+
+  const [date, setDate] = useState(todayISO);
+  const [time, setTime] = useState(() => getFirstAvailableTime(todayISO));
+  const [zone, setZone] = useState("STANDARD");
   const [seats, setSeats] = useState(1);
+
+  const handleDateChange = (newDate: string) => {
+    setDate(newDate);
+    if (isTimeSlotPassed(time, newDate)) {
+      setTime(getFirstAvailableTime(newDate));
+    }
+  };
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const query = new URLSearchParams({
+      date,
+      time,
+      zone,
+      seats: String(seats),
+    }).toString();
+    navigate(`/booking?${query}`);
   }
 
   return (
@@ -37,7 +65,8 @@ function ThirdSection() {
             onSubmit={handleSubmit}
           >
             <div className="booking-section-fields">
-              <label className="booking-section-field">
+              {/* ДАТА */}
+              <div className="booking-section-field">
                 <span>Дата</span>
 
                 <div className="booking-section-input">
@@ -45,31 +74,56 @@ function ThirdSection() {
 
                   <input
                     type="date"
+                    min={todayISO}
+                    value={date}
+                    onChange={(e) => handleDateChange(e.target.value)}
                     required
                   />
                 </div>
-              </label>
+              </div>
 
-              <label className="booking-section-field">
+              {/* ВРЕМЯ */}
+              <div className="booking-section-field">
                 <span>Время</span>
 
                 <div className="booking-section-input">
                   <i className="bi bi-clock"></i>
 
-                  <input
-                    type="time"
+                  <select
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
                     required
-                  />
-                </div>
-              </label>
+                  >
+                    <option value="" disabled>Выберите время</option>
+                    {ALL_TIME_SLOTS.map((group) => {
+                      const availableTimes = group.times.filter((slot) => !isTimeSlotPassed(slot, date));
+                      if (availableTimes.length === 0) return null;
 
+                      return (
+                        <optgroup key={group.group} label={group.group}>
+                          {availableTimes.map((slot) => (
+                            <option key={slot} value={slot}>
+                              {slot}
+                            </option>
+                          ))}
+                        </optgroup>
+                      );
+                    })}
+                  </select>
+                </div>
+              </div>
+
+              {/* ЗОНА */}
               <label className="booking-section-field">
                 <span>Зона</span>
 
                 <div className="booking-section-input">
                   <i className="bi bi-controller"></i>
 
-                  <select defaultValue="STANDARD">
+                  <select
+                    value={zone}
+                    onChange={(e) => setZone(e.target.value)}
+                  >
                     <option value="STANDARD">
                       STANDARD
                     </option>
@@ -89,6 +143,7 @@ function ThirdSection() {
                 </div>
               </label>
 
+              {/* МЕСТА */}
               <div className="booking-section-field">
                 <span>Количество мест</span>
 
@@ -133,4 +188,4 @@ function ThirdSection() {
   );
 }
 
-export default ThirdSection;
+export default QuickBookingSection;

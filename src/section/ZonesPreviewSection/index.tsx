@@ -7,7 +7,7 @@ import { zoneDetails, type ZoneDetails } from "../../data/zoneDetails";
 import { zonePresentation } from "../../data/zonePresentation";
 import "./style.css";
 
-function FirstSection() {
+function ZonesPreviewSection() {
   const zones = content.home.zones;
   const [selectedZone, setSelectedZone] = useState<ZoneDetails | null>(null);
 
@@ -61,4 +61,4 @@ function FirstSection() {
   );
 }
 
-export default FirstSection;
+export default ZonesPreviewSection;

@@ -34,16 +34,12 @@ function Footer() {
           </nav>
 
           <div className="footer__socials">
-            <a href="#" aria-label="Telegram">
+            <a href="https://t.me/cyberhub_almaty" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
               <i className="bi bi-telegram"></i>
             </a>
 
-            <a href="#" aria-label="Discord">
-              <i className="bi bi-discord"></i>
-            </a>
-
-            <a href="#" aria-label="YouTube">
-              <i className="bi bi-youtube"></i>
+            <a href="https://wa.me/77084575170" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <i className="bi bi-whatsapp"></i>
             </a>
           </div>
         </div>

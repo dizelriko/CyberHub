@@ -1,4 +1,6 @@
 .game-card {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   overflow: hidden;
 
@@ -46,6 +48,7 @@
 .game-card-content {
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   min-height: 180px;
 
@@ -81,6 +84,32 @@
 
   font-size: 14px;
   line-height: 1.5;
+}
+
+.game-card-price-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 24px 0;
+}
+
+.game-card-price-wrapper .game-card-price {
+  margin: 0;
+}
+
+.game-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: rgba(53, 245, 108, 0.12);
+  color: #35f56c;
+  border: 1px solid rgba(53, 245, 108, 0.3);
 }
 
 .game-card-price {

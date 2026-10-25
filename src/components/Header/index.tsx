@@ -1,10 +1,36 @@
-import { NavLink, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import Button from "../Button";
 import content from "../../data/content.json";
 import { navigationItems } from "../../data/navigation";
 import "./style.css";
 
 function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const [prevPathname, setPrevPathname] = useState(location.pathname);
+
+  // Закрывать меню при смене страницы во время рендера
+  if (prevPathname !== location.pathname) {
+    setPrevPathname(location.pathname);
+    setIsMenuOpen(false);
+  }
+
+  // Закрывать по клавише Escape
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const toggleMenu = () => setIsMenuOpen((prev) => !prev);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header className="header">
       <div className="container">
@@ -12,6 +38,7 @@ function Header() {
           <Link
             to="/"
             className="header__logo"
+            onClick={closeMenu}
           >
             <span className="header__logo-icon">
               <i className="bi bi-controller"></i>
@@ -29,6 +56,7 @@ function Header() {
             <Button
               to="/booking"
               className="header__booking"
+              onClick={closeMenu}
             >
               <i className="bi bi-calendar3"></i>
 
@@ -38,31 +66,38 @@ function Header() {
             </Button>
 
             <button
-              className="navbar-toggler"
+              className={`navbar-toggler ${isMenuOpen ? "" : "collapsed"}`}
               type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#mainNavigation"
+              onClick={toggleMenu}
               aria-controls="mainNavigation"
-              aria-expanded="false"
-              aria-label="Открыть меню"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             >
               <span className="navbar-toggler-icon"></span>
             </button>
           </div>
 
           <div
-            className="collapse navbar-collapse justify-content-center"
+            className={`collapse navbar-collapse justify-content-center ${isMenuOpen ? "show" : ""}`}
             id="mainNavigation"
           >
             <ul className="navbar-nav">
               {navigationItems.map((item) => (
                 <li className="nav-item" key={item.label}>
                   {item.marksCurrentRoute ? (
-                    <NavLink className="nav-link" to={item.to}>
+                    <NavLink
+                      className="nav-link"
+                      to={item.to}
+                      onClick={closeMenu}
+                    >
                       {item.label}
                     </NavLink>
                   ) : (
-                    <Link className="nav-link" to={item.to}>
+                    <Link
+                      className="nav-link"
+                      to={item.to}
+                      onClick={closeMenu}
+                    >
                       {item.label}
                     </Link>
                   )}

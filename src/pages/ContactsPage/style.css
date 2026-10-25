@@ -25,4 +25,4 @@
 .contacts-page summary i { color: var(--color-primary); transition: transform var(--transition-fast); }
 .contacts-page details p { padding-bottom: 20px; color: var(--color-text-muted); line-height: 1.6; }
 @media (max-width: 991px) { .contacts-page__grid { grid-template-columns: repeat(2, 1fr); } .contacts-page__faq-grid { grid-template-columns: 1fr; gap: 40px; } }
-@media (max-width: 576px) { .contacts-page__hero h1 { font-size: 44px; } .contacts-page__grid { grid-template-columns: 1fr; } }
+@media (max-width: 576px) { .contacts-page__hero { padding: 45px 0; } .contacts-page__hero h1 { font-size: clamp(30px, 8vw, 44px); } .contacts-page__grid { grid-template-columns: 1fr; } }
